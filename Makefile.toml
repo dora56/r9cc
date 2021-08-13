@@ -1,0 +1,18 @@
+[tasks.format]
+install_crate = "rustfmt"
+command = "cargo"
+args = ["fmt", "--", "--emit=files"]
+
+[tasks.rmtmp]
+script = [ "rm  -f tmp tmp.s"]
+
+[tasks.build]
+install_crate = "cross"
+command = "cross"
+args = ["build", "--target", "x86_64-unknown-linux-musl"]
+dependencies = ["format"]
+
+[tasks.cmdtest]
+script = [
+    "./test.sh"
+]
